@@ -3,20 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import java.util.Calendar;
+
 public class Pessoa
 {
     private String nome;
     private String sobrenome;
-    private int idade;
+    private Data dataNascimento;
     private double altura;
     private double peso;
     private double imc;
 
-    public Pessoa(String nome, String sobrenome, int idade, double altura, double peso)
+    public Pessoa(String nome, String sobrenome, Data dataNascimento, double altura, double peso)
     {
         this.nome = nome;
         this.sobrenome = sobrenome;
-        this.idade = idade;
+        this.dataNascimento = dataNascimento;
         this.altura = altura;
         this.peso = peso;
     }
@@ -41,14 +43,14 @@ public class Pessoa
         this.sobrenome = sobrenome;
     }
 
-    public int getIdade()
+    public Data getDataNascimento()
     {
-        return idade;
+        return dataNascimento;
     }
 
-    public void setIdade(int idade)
+    public void setDataNascimento(Data dataNascimento)
     {
-        this.idade = idade;
+        this.dataNascimento = dataNascimento;
     }
 
     public double getAltura()
@@ -79,6 +81,14 @@ public class Pessoa
     public void calculaIMC()
     {
         this.imc = this.peso / (this.altura * this.altura);
+    }
+
+    public int calculaIdade()
+    {
+        Calendar hoje = Calendar.getInstance();
+        int anoAtual = hoje.get(Calendar.YEAR);
+
+        return anoAtual - this.dataNascimento.getAno();
     }
 
     public String informaObesidade()
